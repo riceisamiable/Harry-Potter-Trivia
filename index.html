@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>B&B HP Trivia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    div.triviaTitle {
+      font-family: 'harry_pregular';
+      font-size: 7em;
+    }
+    .form-control {
+      width: 50%;
+    }
+    .glyphicon {
+      color: green;
+      padding-left: 5px;
+      visibility: hidden;
+    }
+    .modal-dialog {
+      position: relative;
+      top: 15%;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="container">
+    <div class="triviaTitle">Ben and Bobbin's Harry Potter Trivia</div>
+    <div style="padding-bottom: 10px;">
+      <div class="form-group">
+        <label style="padding-right: 10px; width: 9em;">Team Name:</label> <input id=teamName type="text" class="form-control" style="width: 70%; display: inline;"></div>
+      <div class="form-group">
+        <label style="padding-right: 10px; width: 9em;">Team Members:</label> <input id=teamMembers type="text" class="form-control" style="width: 70%; display: inline;"></div>
+      <div class="form-group">
+        <label style="padding-right: 10px; width: 9em;">Team Email:</label> <input id=teamEmail type="text" class="form-control" style="width: 70%; display: inline;"></div>
+    </div>
+    <div style="padding-bottom: 20px;
+     padding-top: 20px;
+     font-size: x-large;">Section 1 </div>
+    <div id="section1">
+      <div id="answers1">
+        <div class="form-group"> <label>Question 1: </label> <input type="text" class="form-control" id="Q1" value="Reparifarge"> </div>
+        <div class="form-group"> <label>Question 2: </label> <input type="text" class="form-control" id="Q2" value="Incendio"> </div>
+        <div class="form-group"> <label>Question 3: </label> <input type="text" class="form-control" id="Q3" value="Deletrius"> </div>
+        <div class="form-group"> <label>Question 4: </label> <input type="text" class="form-control" id="Q4" value="Aparecium"> </div>
+        <div class="form-group"> <label>Question 5: </label> <input type="text" class="form-control" id="Q5" value="Protego Totalum"> </div>
+        <div class="form-group"> <label>Question 6: </label> <input type="text" class="form-control" id="Q6" value="Lumos"> </div>
+        <div class="form-group"> <label>Question 7: </label> <input type="text" class="form-control" id="Q7" value="Defodio"> </div>
+
+      </div>
+      <button id="sub1" class="btn btn-default sub">Submit</button> <span id="check1" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+    padding-top: 57px;
+    font-size: x-large;">Section 2 </div>
+    <div id="section2">
+      <div id="answers2">
+        <div class="form-group"> <label>Question 8: </label> <input type="text" class="form-control" id="Q8" value="Flagrate"> </div>
+        <div class="form-group"> <label>Question 9: </label> <input type="text" class="form-control" id="Q9" value="Stupefy"> </div>
+        <div class="form-group"> <label>Question 10: </label> <input type="text" class="form-control" id="Q10" value="Obliviate"> </div>
+        <div class="form-group"> <label>Question 11: </label> <input type="text" class="form-control" id="Q11" value="Locomotor Mortis"> </div>
+        <div class="form-group"> <label>Question 12: </label> <input type="text" class="form-control" id="Q12" value="Flipendo"> </div>
+        <div class="form-group"> <label>Question 13: </label> <input type="text" class="form-control" id="Q13" value="Tergeo"> </div>
+        <div class="form-group"> <label>Question 14: </label> <input type="text" class="form-control" id="Q14" value="Petrificus Totalus"> </div>
+
+      </div>
+      <button id="sub2" class="btn btn-default sub">Submit</button> <span id="check2" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+        padding-top: 57px;
+        font-size: x-large;">Section 3 </div>
+
+    <div id="section3">
+      <div id="answers3">
+        <div class="form-group"> <label>Question 15: </label> <input type="text" class="form-control" id="Q15" value="Ferula"> </div>
+        <div class="form-group"> <label>Question 16: </label> <input type="text" class="form-control" id="Q16" value="Expelliarmus"> </div>
+        <div class="form-group"> <label>Question 17: </label> <input type="text" class="form-control" id="Q17" value="Impervius"> </div>
+        <div class="form-group"> <label>Question 18: </label> <input type="text" class="form-control" id="Q18" value="Specialis Revelio"> </div>
+        <div class="form-group"> <label>Question 19: </label> <input type="text" class="form-control" id="Q19" value="Diffindo"> </div>
+        <div class="form-group"> <label>Question 20: </label> <input type="text" class="form-control" id="Q20" value="Deprimo"> </div>
+        <div class="form-group"> <label>Question 21: </label> <input type="text" class="form-control" id="Q21" value="Lumos"> </div>
+      </div>
+      <button id="sub3" class="btn btn-default sub">Submit</button> <span id="check3" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+        padding-top: 57px;
+        font-size: x-large;">Section 4 </div>
+
+    <div id="section4">
+      <div id="answers4">
+        <div class="form-group"> <label>Question 22: </label> <input type="text" class="form-control" id="Q22" value="Geminio"> </div>
+        <div class="form-group"> <label>Question 23: </label> <input type="text" class="form-control" id="Q23" value="Protego"> </div>
+        <div class="form-group"> <label>Question 24: </label> <input type="text" class="form-control" id="Q24" value="Reparifarge"> </div>
+        <div class="form-group"> <label>Question 25: </label> <input type="text" class="form-control" id="Q25" value="Reducio"> </div>
+        <div class="form-group"> <label>Question 26: </label> <input type="text" class="form-control" id="Q26" value="Reducio"> </div>
+        <div class="form-group"> <label>Question 27: </label> <input type="text" class="form-control" id="Q27" value="Conjunctivitis"> </div>
+        <div class="form-group"> <label>Question 28: </label> <input type="text" class="form-control" id="Q28" value="Aguamenti"> </div>
+      </div>
+      <button id="sub4" class="btn btn-default sub">Submit</button> <span id="check4" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+        padding-top: 57px;
+        font-size: x-large;">Section 5 </div>
+
+    <div id="section5">
+      <div id="answers5">
+        <div class="form-group"> <label>Question 29: </label> <input type="text" class="form-control" id="Q29" value="Scruge"> </div>
+        <div class="form-group"> <label>Question 30: </label> <input type="text" class="form-control" id="Q30" value="Priori Incantatum"> </div>
+        <div class="form-group"> <label>Question 31: </label> <input type="text" class="form-control" id="Q31" value="Piertotum Locomotor"> </div>
+        <div class="form-group"> <label>Question 32: </label> <input type="text" class="form-control" id="Q32" value="Wingardium Leviosa"> </div>
+        <div class="form-group"> <label>Question 33: </label> <input type="text" class="form-control" id="Q33" value="Erecto"> </div>
+        <div class="form-group"> <label>Question 34: </label> <input type="text" class="form-control" id="Q34" value="Defodio"> </div>
+        <div class="form-group"> <label>Question 35: </label> <input type="text" class="form-control" id="Q35" value="Sectumsempra"> </div>
+      </div>
+      <button id="sub5" class="btn btn-default sub">Submit</button> <span id="check5" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+        padding-top: 57px;
+        font-size: x-large;">Section 6 </div>
+    <div id="section6">
+      <div id="answers6">
+        <div class="form-group"> <label>Question 36: </label> <input type="text" class="form-control" id="Q36" value="Meteolojinx Recanto"> </div>
+        <div class="form-group"> <label>Question 37: </label> <input type="text" class="form-control" id="Q37" value="Scruge"> </div>
+        <div class="form-group"> <label>Question 38: </label> <input type="text" class="form-control" id="Q38" value="Protego Horribilis"> </div>
+        <div class="form-group"> <label>Question 39: </label> <input type="text" class="form-control" id="Q39" value="Incarcerous"> </div>
+        <div class="form-group"> <label>Question 40: </label> <input type="text" class="form-control" id="Q40" value="Morsmorde"> </div>
+        <div class="form-group"> <label>Question 41: </label> <input type="text" class="form-control" id="Q41" value="Expulso"> </div>
+        <div class="form-group"> <label>Question 42: </label> <input type="text" class="form-control" id="Q42" value="Deletrius"> </div>
+      </div>
+      <button id="sub6" class="btn btn-default sub">Submit</button> <span id="check6" class="glyphicon glyphicon-ok">
+    </div>
+    <div style="padding-bottom: 20px;
+        padding-top: 57px;
+        font-size: x-large;">Section 7 </div>
+    <div id="section7">
+      <div id="answers7">
+        <div class="form-group"> <label>Question 43: </label> <input type="text" class="form-control" id="Q43" value="Flipendo"> </div>
+        <div class="form-group"> <label>Question 44: </label> <input type="text" class="form-control" id="Q44" value="Silencio"> </div>
+        <div class="form-group"> <label>Question 45: </label> <input type="text" class="form-control" id="Q45" value="Confringo"> </div>
+        <div class="form-group"> <label>Question 46: </label> <input type="text" class="form-control" id="Q46" value="Duro"> </div>
+        <div class="form-group"> <label>Question 47: </label> <input type="text" class="form-control" id="Q47" value="Scruge"> </div>
+        <div class="form-group"> <label>Question 48: </label> <input type="text" class="form-control" id="Q48" value="Flagrate"> </div>
+        <div class="form-group"> <label>Question 49: </label> <input type="text" class="form-control" id="Q49" value="Protego"> </div>
+      </div>
+      <button id="sub7" class="btn btn-default sub">Submit</button> <span id="check7" class="glyphicon glyphicon-ok">
+    </div>
+
+
+    <!--
+
+
+
+
+
+
+  -->
+
+
+    </form>
+  </div>
+
+  <div class="modal fade in" id="authModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalTitle">Enter Wizard Token</h5>
+
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="authToken" value="Reparifarge" required>
+        </div>
+        <div class="modal-footer">
+          <div style="display: inline; padding-right: 4em; visibility: hidden; color: crimson;" id="authfail">Hmm, that didnt work... Are you a Muggle perhaps?</div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="authButton">Authenticate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn" data-toggle="modal" href="#authModal">Launch Modal</a>
+
+  <script src="src/hp-frontend.js"></script>
+  <script>
+    $('#authModal').modal({
+      backdrop: 'static',
+      show: true,
+      keyboard: false
+    })
+  </script>
+</body>
+
+</html>

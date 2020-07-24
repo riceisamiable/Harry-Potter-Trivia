@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>B&B HP Trivia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
+  <link href="https://unpkg.com/frappe-datatable/dist/frappe-datatable.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/frappe-datatable/dist/frappe-datatable.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="lib/diff_match_patch.js"></script>
+
+
+
+ <script src="src/admin.js"></script>
+  <style type="text/css">
+          div.triviaTitle { font-family: 'harry_pregular';
+                       font-size: 40px;
+              }
+          input[type=number]::-webkit-inner-spin-button,
+          input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+  </style>
+</head>
+<body>
+<div class="triviaTitle" style="text-align: center;">  Wizarding Quiz Management </div>
+
+<ul class="nav nav-tabs nav-justified" id="tabs">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Scoring" role="tab" aria-controls="home" aria-selected="true">Scoring</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Leaderboard" role="tab" aria-controls="profile" aria-selected="false">Leader Board</a>
+    </li>
+<!-- <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Config" role="tab" aria-controls="profile" aria-selected="false">Configure Trivia</a>
+    </li>
+-->
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Admin" role="tab" aria-controls="profile" aria-selected="false">Administer Trivia</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="Scoring" class="tab-pane fade in show active">
+          <div style="padding-left: 15%; padding-bottom: 15px;">
+            <div>
+              <label>Select a Team</label>
+            </div>
+            <select class="js-example-basic-single" name="teams" style="width: 25%;" id="mySelect2"></select>
+            <div style="display: inline-block; padding-left: 35%;">
+            <button type="button" class="btn btn-secondary" id="certify_btn">Certify Team Score</button>
+           </div>
+          </div>
+
+          <div style="display: table; margin: auto" id="hii">
+            <div id="datatable" ></div>
+          </div>
+    </div>
+
+      <div id="Leaderboard" class="tab-pane fade" style="text-align: center;">
+          <p></p>
+          <h3>House Points!</h3>
+          <p></p>
+          <div style="display: table; margin: auto" id="hii">
+            <div id="leaderDatatable" ></div>
+          </div>
+      </div>
+
+<!--
+
+      <div id="Config" class="tab-pane fade" style="text-align: center;">
+          <h3>Configure the Game.. Bitches!</h3>
+          <p> Configure this shit here...</p>
+          <ul> <li>How many qestions </li>
+             <li>How many sections </li>
+             <li>Answers to questions for automatic scoring </li>
+          </ul>
+
+      </div>
+  -->
+
+      <div id="Admin" class="tab-pane fade" style="text-align: center;">
+          <p></p>
+          <h3>The Power is Yours!</h3>
+          <p></p>
+          <p>Unlock Answer Fields </p>
+          <button type="button" class="btn btn-outline-secondary">Un-Certify All Scores</button>
+          <p></p>
+          <p>Force Submit Answers</p>
+          <button type="button" class="btn btn-outline-secondary">Section 1</button>
+          <button type="button" class="btn btn-outline-secondary">Section 2</button>
+          <button type="button" class="btn btn-outline-secondary">Section 3</button>
+          <button type="button" class="btn btn-outline-secondary">Section 4</button>
+          <button type="button" class="btn btn-outline-secondary">Section 5</button>
+          <button type="button" class="btn btn-outline-secondary">Section 6</button>
+          <button type="button" class="btn btn-outline-secondary">Section 7</button>
+          <button type="button" class="btn btn-outline-secondary">All</button>
+          <p></p>
+          <p>Unlock Answer Fields </p>
+          <button type="button" class="btn btn-outline-secondary">Section 1</button>
+          <button type="button" class="btn btn-outline-secondary">Section 2</button>
+          <button type="button" class="btn btn-outline-secondary">Section 3</button>
+          <button type="button" class="btn btn-outline-secondary">Section 4</button>
+          <button type="button" class="btn btn-outline-secondary">Section 5</button>
+          <button type="button" class="btn btn-outline-secondary">Section 6</button>
+          <button type="button" class="btn btn-outline-secondary">Section 7</button>
+          <button type="button" class="btn btn-outline-secondary">All</button>
+          <p></p>
+
+      </div>
+
+
+
+  </div>
+
+</body>
+</html>
