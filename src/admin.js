@@ -102,7 +102,8 @@ $(function () {
                     editable: false},
                     {name:'Answer',
                     width: 500,
-                    editable: false},
+                    editable: false,
+                    align: 'left'},
                     {name:'Score',
                     width: 100} ]
 

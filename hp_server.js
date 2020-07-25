@@ -29,7 +29,7 @@ let tokennum = 0
 let tokens = []
 const adminToken = 'Admin';
 let adminCount = 0;
-let testing = false;
+let testing = true;
 
 
 

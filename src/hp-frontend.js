@@ -149,7 +149,7 @@ $(function () {
 
     if (json.Type === 'Previously Submitted'){
       console.log('Previously Submitted')
-      console.log(json.Data)
+    //  console.log(json.Data)
       data = json.Data
       $('#teamName').val(json.Data.TeamName);
       $('#teamMembers').val(json.Data.TeamMembers);
@@ -159,16 +159,14 @@ $(function () {
       $('#teamEmail').attr('disabled', 'disabled')
       //console.log(Object.keys(data.TrivSections))
 
-
       for (const key in data.TrivSections) {
-              //console.log(Object.keys(data.TrivSections[i]))
-        //console.log(Object.keys(data.TrivSections[i]))
         const TrivSection = data.TrivSections[key]
         for (const prop in TrivSection) {
           const value = TrivSection[prop]
-          console.log(value)
+          //console.log(value)
           if(value || value === 0 ){
             $(`#${prop}`).val(value)
+            $(`#${prop}`).attr('disabled', 'disabled')
           }
         }
       }
