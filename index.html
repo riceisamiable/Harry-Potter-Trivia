@@ -28,6 +28,17 @@
       position: relative;
       top: 15%;
     }
+    .label_num{
+      display: inline-block;
+      padding-left: 10px;
+      text-align: right;
+    }
+
+    .last_q{
+      width: 40%;
+      display: inline-block;
+    }
+
   </style>
 </head>
 
@@ -44,13 +55,14 @@
         <label style="padding-right: 10px; width: 9em;">Team Members:</label> <input id=teamMembers type="text" class="form-control" style="width: 70%; display: inline;"></div>
       <div class="form-group">
         <label style="padding-right: 10px; width: 9em;">Team Email:</label> <input id=teamEmail type="text" class="form-control" style="width: 70%; display: inline;"></div>
+        <button id="sub0" class="btn btn-default sub">Submit Team Info</button> <span id="check0" class="glyphicon glyphicon-ok">
     </div>
     <div style="padding-bottom: 20px;
      padding-top: 20px;
-     font-size: x-large;">Section 1 </div>
+     font-size: x-large;">Round 1 </div>
     <div id="section1">
       <div id="answers1">
-        <div class="form-group"> <label>Question 1: </label> <input type="text" class="form-control" id="Q1" value="Reparifarge"> </div>
+        <div class="form-group"> <label>Question 1: </label> <input type="text" class="form-control" id="Q1" value=""> </div>
         <div class="form-group"> <label>Question 2: </label> <input type="text" class="form-control" id="Q2" value="Incendio"> </div>
         <div class="form-group"> <label>Question 3: </label> <input type="text" class="form-control" id="Q3" value="Deletrius"> </div>
         <div class="form-group"> <label>Question 4: </label> <input type="text" class="form-control" id="Q4" value="Aparecium"> </div>
@@ -63,7 +75,7 @@
     </div>
     <div style="padding-bottom: 20px;
     padding-top: 57px;
-    font-size: x-large;">Section 2 </div>
+    font-size: x-large;">Round 2 </div>
     <div id="section2">
       <div id="answers2">
         <div class="form-group"> <label>Question 8: </label> <input type="text" class="form-control" id="Q8" value="Flagrate"> </div>
@@ -79,7 +91,7 @@
     </div>
     <div style="padding-bottom: 20px;
         padding-top: 57px;
-        font-size: x-large;">Section 3 </div>
+        font-size: x-large;">Round 3 </div>
 
     <div id="section3">
       <div id="answers3">
@@ -95,7 +107,7 @@
     </div>
     <div style="padding-bottom: 20px;
         padding-top: 57px;
-        font-size: x-large;">Section 4 </div>
+        font-size: x-large;">Round 4 </div>
 
     <div id="section4">
       <div id="answers4">
@@ -111,7 +123,7 @@
     </div>
     <div style="padding-bottom: 20px;
         padding-top: 57px;
-        font-size: x-large;">Section 5 </div>
+        font-size: x-large;">Round 5 </div>
 
     <div id="section5">
       <div id="answers5">
@@ -127,7 +139,7 @@
     </div>
     <div style="padding-bottom: 20px;
         padding-top: 57px;
-        font-size: x-large;">Section 6 </div>
+        font-size: x-large;">Round 6 </div>
     <div id="section6">
       <div id="answers6">
         <div class="form-group"> <label>Question 36: </label> <input type="text" class="form-control" id="Q36" value="Meteolojinx Recanto"> </div>
@@ -142,16 +154,30 @@
     </div>
     <div style="padding-bottom: 20px;
         padding-top: 57px;
-        font-size: x-large;">Section 7 </div>
+        font-size: x-large;">Round 7 </div>
+        <p><b>Question 43</b></p>
     <div id="section7">
       <div id="answers7">
-        <div class="form-group"> <label>Question 43: </label> <input type="text" class="form-control" id="Q43" value="Flipendo"> </div>
-        <div class="form-group"> <label>Question 44: </label> <input type="text" class="form-control" id="Q44" value="Silencio"> </div>
-        <div class="form-group"> <label>Question 45: </label> <input type="text" class="form-control" id="Q45" value="Confringo"> </div>
-        <div class="form-group"> <label>Question 46: </label> <input type="text" class="form-control" id="Q46" value="Duro"> </div>
-        <div class="form-group"> <label>Question 47: </label> <input type="text" class="form-control" id="Q47" value="Scruge"> </div>
-        <div class="form-group"> <label>Question 48: </label> <input type="text" class="form-control" id="Q48" value="Flagrate"> </div>
-        <div class="form-group"> <label>Question 49: </label> <input type="text" class="form-control" id="Q49" value="Protego"> </div>
+        <div class="form-group"> <label class="label_num">1: </label> <input type="text" class="last_q form-control" id="Q43" value="23">
+         <label class="label_num">2: </label> <input type="text" class="last_q form-control" id="Q44" value=""> </div>
+        <div class="form-group"> <label class="label_num">3: </label> <input type="text" class="last_q form-control" id="Q45" value="2">
+         <label class="label_num">4: </label> <input type="text" class="last_q form-control" id="Q46" value=""> </div>
+        <div class="form-group"> <label class="label_num">5: </label> <input type="text" class="last_q form-control" id="Q47" value="2">
+         <label class="label_num">6: </label> <input type="text" class="last_q form-control" id="Q48" value=""> </div>
+        <div class="form-group"> <label class="label_num">7: </label> <input type="text" class="last_q form-control" id="Q49" value="2">
+         <label class="label_num">8: </label> <input type="text" class="last_q form-control" id="Q50" value=""> </div>
+        <div class="form-group"> <label class="label_num">9: </label> <input type="text" class="last_q form-control" id="Q51" value="2">
+         <label class="label_num">10: </label> <input type="text" class="last_q form-control" id="Q52" value=""> </div>
+         <div class="form-group"> <label class="label_num">11: </label> <input type="text" class="last_q form-control" id="Q53" value="2">
+          <label class="label_num">12: </label> <input type="text" class="last_q form-control" id="Q54" value=""> </div>
+         <div class="form-group"> <label class="label_num">13: </label> <input type="text" class="last_q form-control" id="Q55" value="2">
+          <label class="label_num">14: </label> <input type="text" class="last_q form-control" id="Q56" value=""> </div>
+         <div class="form-group"> <label class="label_num">15: </label> <input type="text" class="last_q form-control" id="Q57" value="2">
+          <label class="label_num">16: </label> <input type="text" class="last_q form-control" id="Q58" value=""> </div>
+         <div class="form-group"> <label class="label_num">17: </label> <input type="text" class="last_q form-control" id="Q59" value="">
+          <label class="label_num">18: </label> <input type="text" class="last_q form-control" id="Q60" value=""> </div>
+         <div class="form-group"> <label class="label_num">19: </label> <input type="text" class="last_q form-control" id="Q61" value="">
+          <label class="label_num">20: </label> <input type="text" class="last_q form-control" id="Q62" value=""> </div>
       </div>
       <button id="sub7" class="btn btn-default sub">Submit</button> <span id="check7" class="glyphicon glyphicon-ok">
     </div>

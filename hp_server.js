@@ -1,6 +1,8 @@
 "use strict";
 // Optional. You will see this name in eg. 'ps' or 'top' command
 const fs = require('fs');
+//const crypto  = require('crypto');
+const cryptojs = require("crypto-js");
 
 process.title = 'hp_trivia_server';
 // Port where we'll run the websocket server
@@ -23,9 +25,12 @@ let gradedAnswers
 let currentGradedAnswers
 let admins = new Set();
 let adminCheck
-var token = 'Wizard';
+let tokennum = 0
+let tokens = []
 const adminToken = 'Admin';
 let adminCount = 0;
+let testing = false;
+
 
 
 /**
@@ -39,7 +44,7 @@ function htmlEntities(str) {
 
 function searchData(key, array){
   for (let i = 0; i < array.length; i++ ){
-    if (array[i].TeamName === key){
+    if (array[i].TeamID === key){
       return i}
   }
 }
@@ -47,6 +52,13 @@ function searchData(key, array){
 function searchGradedAnswers(key, array){
   for (let i = 0; i < array.length; i++ ){
     if (array[i].name === key){
+      return i}
+  }
+}
+
+function findToken(key, array){
+  for (let i = 0; i < array.length; i++ ){
+    if (array[i] === key){
       return i}
   }
 }
@@ -113,15 +125,23 @@ wsServer.on('request', function(request) {
   // make sure that client is connecting from your website
   // (http://en.wikipedia.org/wiki/Same_origin_policy)
   var connection = request.accept(null, request.origin);
+
+  //Check if token exists
+  if(testing){
+   connection.sendUTF(JSON.stringify('Reset Tokens'));
+  }
+
+
+  connection.sendUTF(JSON.stringify('Welcome Wizard!'));
+
   // we need to know client index to remove them on 'close' event
   var index = clients.push(connection) - 1;
-  var userName = false;
-  var userColor = false;
+  console.log(clients.length)
   console.log((new Date()) + ' Connection accepted.');
 
 
   //Send hello message
-  connection.sendUTF(JSON.stringify('Welcome Wizard!'));
+
 
   // user sent some message
   connection.on('message', function(message) {
@@ -129,16 +149,41 @@ wsServer.on('request', function(request) {
       console.log(message);
       var msg = JSON.parse(message.utf8Data);
 
+    if(msg.type === 'Token') {
+      if(msg.data === 'No Token'){
+        console.log('No Team Token')
+        let date = Date.now().toString()
+        let hash = cryptojs.SHA256(date)
+        const token = hash.toString(cryptojs.enc.Hex)
+        tokens.push(token)
+        connection.id = token
+        connection.sendUTF(JSON.stringify({Type: 'Auth', Data: token}));
+      } else {
+        console.log('Team Token Exists')
+        let tokenCheck = findToken(msg.data, tokens)
+        if(tokenCheck >= 0){
+          let token = msg.data
+           team = searchData(token, db)
+           if(team >= 0){
+             connection.sendUTF(JSON.stringify({Type: 'Previously Submitted', Data: db[team]}));
+           }
+        } else {
+          tokens.push(msg.data)
+          let token = msg.data
+          team = searchData(token, db)
+          if(team >= 0){
+            connection.sendUTF(JSON.stringify({Type: 'Previously Submitted', Data: db[team]}));
+
+          }
+          console.log('Token Added to Array')
+        }
+        connection.id = JSON.stringify(msg.data)
+
+      }
+    }
+
     if (msg.type === 'Auth'){
       if(msg.data === adminToken){
-
-        //Get Rid of the Previous Admin connection
-        /*let adminExists = findAdmin('Admin', clients);
-        if(adminExists >= 0){
-          clients.splice(adminExists,1);
-          console.log('Old Admin Kicked For A New King')
-        }*/
-
         connection.id = 'Admin' + adminCount;
         adminCount = adminCount + 1;
         console.log(connection.id + ' has connected.')
@@ -148,19 +193,20 @@ wsServer.on('request', function(request) {
         } else {
           connection.sendUTF(JSON.stringify({Type: 'Answers', Data: db}));
         }
-      } else {
+      }
+      /*else {
           if(msg.data === token){
             connection.sendUTF(JSON.stringify({ Type: 'Auth', Data: 'Accepted'}))
           } else {
             connection.sendUTF(JSON.stringify({ Type: 'Auth', Data: 'Failed'}))
           }
-        }
+        }*/
     }
 
 
     if (msg.type === 'Submit') {
-      connection.id = msg.data.TeamName;
-      team = searchData(msg.data.TeamName, db)
+      //connection.id = msg.data.TeamName;
+      team = searchData(msg.data.TeamID, db)
       //console.log(team);
 
       if(!team && team != 0){
@@ -253,6 +299,8 @@ wsServer.on('request', function(request) {
         if (adminCheck) {
           for (let admin of admins.keys()) {
             clients[admin].sendUTF(JSON.stringify({ Type: 'Answers', Data: db}))
+            console.log(clients)
+            clients[admin].sendUTF(JSON.stringify({ Type: 'clients', Data: 'hi'}))
             }
           console.log('Sent Answers to Admin')
           //console.log(clients.length);
@@ -326,13 +374,15 @@ wsServer.on('request', function(request) {
   });
   // user disconnected
   connection.on('close', function(connection) {
-    if (userName !== false && userColor !== false) {
+  /*  if (userName !== false && userColor !== false) {
       console.log((new Date()) + " Peer "
           + connection.remoteAddress + " disconnected.");
       // remove user from the list of connected clients
       clients.splice(index, 1);
       // push back user's color to be reused by another user
       colors.push(userColor);
-    }
+    }*/
+    console.log((new Date()) + " Peer "
+        + connection.remoteAddress + " disconnected.");
   });
 });

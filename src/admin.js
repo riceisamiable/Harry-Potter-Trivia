@@ -264,7 +264,11 @@ function calcCertButton(position){
   }
 
   // open connection
-  var connection = new WebSocket('ws://127.0.0.1:1337')
+  var connection = new WebSocket(
+    window.location.hostname === 'localhost'
+      ? 'ws://127.0.0.1:1337'
+      : 'ws://134.122.29.209:1337'
+  )
 
   connection.onopen = function () {
     // first we want users to enter their names
@@ -522,6 +526,12 @@ function calcCertButton(position){
         }
     }
 
+
+      if (json.Type === 'clients') {
+        console.log('clients here')
+        console.log(json.Data);
+      }
+
   }
 
   $('#authButton').click(function () {
@@ -641,6 +651,22 @@ $('#certify_btn').click(function(){
     { type: 'Graded', data: answers }));
 
 } );
+
+$('#uncert_btn').click(function(){
+  console.log('penis here')
+  for (let i = 0; i < answers.length; i++){
+    answers[i].certified = false
+  }
+  createSelectData(lastSelected)
+  $("#mySelect2").html("")
+  //Re Create Select2 Element
+  $('#mySelect2').select2({
+    data: selectTeams.results
+  })
+
+  connection.send(JSON.stringify(
+    { type: 'Graded', data: answers }));
+})
     //  $('#tabs a[href="#Admin"]').tab('show')
 
 

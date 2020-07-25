@@ -5,11 +5,11 @@ $(function () {
   let teamName
   let teamMembers
   let teamEmail
-  const data = {
+  let data = {
     TeamID: '',
-    TeamName: 'Kurz',
-    TeamMembers: 'David, Bobbin, Kia, Ben',
-    Email: 'kurz@kurz.com',
+    TeamName: '',
+    TeamMembers: '',
+    Email: '',
     TrivSections: {
       1: {
         Q1: '',
@@ -91,13 +91,18 @@ $(function () {
     return
   }
 
+
   // open connection
-  var connection = new WebSocket('ws://127.0.0.1:1337')
+  var connection = new WebSocket(
+    window.location.hostname === 'localhost'
+      ? 'ws://127.0.0.1:1337'
+      : 'ws://134.122.29.209:1337'
+  )
 
 
   connection.onerror = function (error) {
     // just in there were some problems with conenction...
-    content.html($('<p>', { 
+    content.html($('<p>', {
       text: 'Sorry, but there\'s some problem with your ' +
                                     'connection or the server is down.'
     }))
@@ -115,19 +120,61 @@ $(function () {
       console.log('This doesn\'t look like a valid JSON: ', message.data)
       return
     }
-    console.log(json)
 
-    if (json.Type === 'Auth') {
-      console.log('here')
-      if (json.Data === 'Accepted') {
-        console.log(' and here')
-        $('#authModal').modal('hide')
-        console.log('Authentication Success')
+    if(json === 'Reset Tokens'){
+      window.localStorage.removeItem('HPTriviaTK')
+    }
+
+    //console.log(json)
+    if(json === 'Welcome Wizard!'){
+     token = window.localStorage.getItem('HPTriviaTK');
+      if(!token){
+        connection.send(JSON.stringify(
+          { type: 'Token', data: 'No Token' }))
+          console.log('No Token, Requesting Token')
       } else {
-        $('#authfail').css('visibility', 'visible')
-        console.log('Authentication Failed')
+        connection.send(JSON.stringify(
+          { type: 'Token', data: token }))
+          console.log('Token Exists, Providing Token')
+          console.log(token + ' is this session\'s token.')
       }
+    }
+
+
+    if (json.Type === 'Auth'){
+    window.localStorage.setItem('HPTriviaTK', json.Data);
+    token = window.localStorage.getItem('HPTriviaTK');
+    console.log(token + ' is this session\'s token.')
     };
+
+    if (json.Type === 'Previously Submitted'){
+      console.log('Previously Submitted')
+      console.log(json.Data)
+      data = json.Data
+      $('#teamName').val(json.Data.TeamName);
+      $('#teamMembers').val(json.Data.TeamMembers);
+      $('#teamEmail').val(json.Data.Email);
+      $('#teamName').attr('disabled', 'disabled')
+      $('#teamMembers').attr('disabled', 'disabled')
+      $('#teamEmail').attr('disabled', 'disabled')
+      //console.log(Object.keys(data.TrivSections))
+
+
+      for (const key in data.TrivSections) {
+              //console.log(Object.keys(data.TrivSections[i]))
+        //console.log(Object.keys(data.TrivSections[i]))
+        const TrivSection = data.TrivSections[key]
+        for (const prop in TrivSection) {
+          const value = TrivSection[prop]
+          console.log(value)
+          if(value || value === 0 ){
+            $(`#${prop}`).val(value)
+          }
+        }
+      }
+
+
+    }
 
     if(json.Type === 'forceSubmit'){
      // Do Stuff Here
@@ -154,7 +201,7 @@ $(function () {
 
   }
 
-
+  $('#authModal').modal('hide')
 
   // Submit Authentication Button
   $('#authButton').click(function () {
@@ -168,6 +215,7 @@ $(function () {
   $('.sub').click(function () {
     const reg = /\d+/g
     const section = $(this).attr('id').match(reg)
+    //console.log(section)
     const check = '#check' + section
     const inputs = 'div#answers' + section + ' input'
     if(!$('#teamName').val().trim()){
@@ -185,7 +233,9 @@ $(function () {
       $(p).attr('disabled', 'disabled')
       // console.log(data.TrivSections[1][v]);
     }
-
+    data.TeamID = token
+    let button = '#sub' + section
+    $(button).attr('disabled', 'disabled')
     $(check).css('visibility', 'visible')
     console.log(data)
 
