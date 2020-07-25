@@ -71,6 +71,8 @@ function showScoreTab(teamname){
   for (let i = 0; i < answers[team].answers.length; i++){
     if(answers[team].answers[i][2]){
       datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+    } else if (answers[team].answers[i][2] === 0 ) {
+      datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
     } else {
       datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
 
@@ -501,6 +503,8 @@ function calcCertButton(position){
           for (let i = 0; i < answers[position].answers.length; i++){
             if(answers[position].answers[i][2]){
               datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+            } else if (answers[position].answers[i][2] === 0 ) {
+              datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
             } else {
               datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
             }
@@ -522,6 +526,8 @@ function calcCertButton(position){
           for (let i = 0; i < answers[0].answers.length; i++){
             if(answers[0].answers[i][2]){
               datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+            } else if (answers[0].answers[i][2] === 0 ) {
+              datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
             } else {
               datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
             }
@@ -557,6 +563,8 @@ function calcCertButton(position){
     for (let i = 0; i < answers[position].answers.length; i++){
       if(answers[position].answers[i][2]){
         datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+      } else if (answers[position].answers[i][2] === 0 ) {
+        datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
       } else {
         datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
 
@@ -600,6 +608,8 @@ $('body').on('change', '.dt-input', function(){
     if(answers[team].answers[i][2]){
       //Change color background of row to green
       datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+    } else if (answers[team].answers[i][2] === 0 ) {
+      datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
     } else {
       //Change color background of row back to white
       datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
