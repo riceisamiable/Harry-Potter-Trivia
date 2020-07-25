@@ -126,8 +126,10 @@ $(function () {
     for (let i = 0; i < answers.length; i++){
       qGraded = 0
       for (let  n = 0; n < answers[i].answers.length; n++){
-        if(answers[i].answers[n][2]){
+        if(answers[i].answers[n][2] || answers[i].answers[n][2] === 0  ){
           qGraded = qGraded + 1
+          console.log(answers[i].answers[n][0])
+          console.log(answers[i].answers[n][2])
         }
           answers[i].qGraded = qGraded
       }
