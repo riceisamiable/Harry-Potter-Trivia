@@ -130,8 +130,8 @@ $(function () {
       for (let  n = 0; n < answers[i].answers.length; n++){
         if(answers[i].answers[n][2] || answers[i].answers[n][2] === 0  ){
           qGraded = qGraded + 1
-          console.log(answers[i].answers[n][0])
-          console.log(answers[i].answers[n][2])
+        //  console.log(answers[i].answers[n][0])
+        //  console.log(answers[i].answers[n][2])
         }
           answers[i].qGraded = qGraded
       }
@@ -586,7 +586,7 @@ $('body').on('focusout', '.dt-cell--editing', function() {
 
 //Event that grabs new value in cell after editing
 $('body').on('change', '.dt-input', function(){
-  let newValue = parseInt($(this).val());
+  let newValue = parseFloat($(this).val());
   console.log(newValue)
   let team = searchData(lastSelected, answers)
   console.log(team)
@@ -666,7 +666,7 @@ $('#certify_btn').click(function(){
 } );
 
 $('#uncert_btn').click(function(){
-  console.log('penis here')
+  //console.log('penis here')
   for (let i = 0; i < answers.length; i++){
     answers[i].certified = false
   }
