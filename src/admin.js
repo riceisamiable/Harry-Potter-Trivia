@@ -155,7 +155,7 @@ $(function () {
       totalScore = 0
       for (let o = 0; o < answers[i].answers.length; o++ ){
         let s = answers[i].answers[o][2];
-        s = s ? s: 0;
+        s = s || s === 0 ? s: 0;
         totalScore = totalScore + s;
         //console.log(totalScore)
       }
@@ -329,7 +329,7 @@ function calcCertButton(position){
               let q = answers[teamCheck].answers[o][0]
               let s = answers[teamCheck].answers[o][2];
               qScores[q] = s
-              s = s ? s: 0;
+              s = s || s === 0 ? s: 0;
               totalScore = totalScore + s;
               //console.log(totalScore)
             }
@@ -450,6 +450,8 @@ function calcCertButton(position){
             for (let i = 0; i < answers[0].answers.length; i++){
               if(answers[0].answers[i][2]){
                 datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+              } else if (answers[position].answers[i][2] === 0 ) {
+                datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
               } else {
                 datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
 
@@ -640,7 +642,7 @@ $('body').on('change', '.dt-input', function(){
   connection.send(JSON.stringify(
     { type: 'Graded', data: answers }));
 
-    
+
     //let nextrow = parseInt(rowIndex) + 2
     //let stuff = 'div[data-row-index="'+nextrow+'"][data-col-index="'+ colIndex +'"]'
 
