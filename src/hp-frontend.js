@@ -5,6 +5,7 @@ $(function () {
   let teamName
   let teamMembers
   let teamEmail
+  let btn_click
   let data = {
     TeamID: '',
     TeamName: '',
@@ -88,7 +89,8 @@ $(function () {
         'Q7-20': ''
 
       }
-    }
+    },
+      ButtonClick:[]
   }
 
   // if user is running mozilla then use it's built-in WebSocket
@@ -163,7 +165,7 @@ $(function () {
 
     if (json.Type === 'Previously Submitted'){
       console.log('Previously Submitted')
-    //  console.log(json.Data)
+      //console.log(json.Data)
       data = json.Data
       $('#teamName').val(json.Data.TeamName);
       $('#teamMembers').val(json.Data.TeamMembers);
@@ -183,6 +185,14 @@ $(function () {
             $(`#${prop}`).attr('disabled', 'disabled')
           }
         }
+      }
+
+      for (let i = 0; i < data.ButtonClick.length; i++){
+        let btn = '#sub'+ data.ButtonClick[i]
+        let check = '#check' + data.ButtonClick[i]
+        $(btn).attr('disabled', 'disabled')
+        console.log('Button:'+ btn + ' was previously clicked')
+        $(check).css('visibility', 'visible')
       }
 
 
@@ -242,11 +252,16 @@ $(function () {
       const v = 'Q' + section + '-' + j
       const p = '#' + v
       console.log(p)
-      data.TrivSections[section][v] = $(p).val()
+      let ans = $(p).val()
+      if(!$(p).val()){
+        ans = '[No Answer Provided]'
+      }
+      data.TrivSections[section][v] = ans
       $(p).attr('disabled', 'disabled')
       // console.log(data.TrivSections[1][v]);
     }
     data.TeamID = token
+    data.ButtonClick.push(parseInt(section))
     let button = '#sub' + section
     $(button).attr('disabled', 'disabled')
     $(check).css('visibility', 'visible')

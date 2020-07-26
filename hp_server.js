@@ -29,7 +29,7 @@ let tokennum = 0
 let tokens = []
 const adminToken = 'Admin';
 let adminCount = 0;
-let testing = true;
+let testing = false;
 
 
 
@@ -136,7 +136,7 @@ wsServer.on('request', function(request) {
 
   // we need to know client index to remove them on 'close' event
   var index = clients.push(connection) - 1;
-  console.log(clients.length)
+  //console.log(clients.length)
   console.log((new Date()) + ' Connection accepted.');
 
 
@@ -146,7 +146,7 @@ wsServer.on('request', function(request) {
   // user sent some message
   connection.on('message', function(message) {
     if (message.type === 'utf8') { // accept only text
-      console.log(message);
+      //console.log(message);
       var msg = JSON.parse(message.utf8Data);
 
     if(msg.type === 'Token') {
@@ -189,7 +189,7 @@ wsServer.on('request', function(request) {
         console.log(connection.id + ' has connected.')
         if (gradedAnswers){
           connection.sendUTF(JSON.stringify({Type: 'GradedData', Data: gradedAnswers}));
-          console.log('good show')
+          console.log('Graded Answers Sent to Admin')
         } else {
           connection.sendUTF(JSON.stringify({Type: 'Answers', Data: db}));
         }
@@ -292,14 +292,14 @@ wsServer.on('request', function(request) {
       //Check if any Admins have connected
         adminCheck = findAdmins('Admin', clients);
         console.log('Admins Exist: ' + adminCheck);
-        console.log(admins)
+        console.log('Admins '+ admins)
 
 
       //If Admin Has connected, send answers to Admin.
         if (adminCheck) {
           for (let admin of admins.keys()) {
             clients[admin].sendUTF(JSON.stringify({ Type: 'Answers', Data: db}))
-            console.log(clients)
+            //console.log(clients)
             clients[admin].sendUTF(JSON.stringify({ Type: 'clients', Data: 'hi'}))
             }
           console.log('Sent Answers to Admin')
@@ -318,7 +318,7 @@ wsServer.on('request', function(request) {
       //Check if any Admins have connected
         adminCheck = findAdmins('Admin', clients);
         console.log('Admins Exist: ' + adminCheck);
-        console.log(admins)
+        console.log('Admins '+ admins)
 
       //If Admin Has connected, send answers to Admin.
         if (adminCheck) {

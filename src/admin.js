@@ -100,7 +100,7 @@ $(function () {
   const sheet = 'https://docs.google.com/spreadsheets/d/1GFGtldKSDSSbL2z0B_QvUWCqBTW5LtHlcPUHozd0Q5A/edit?usp=sharing'
 
    scoreColumns = [{name:'Question',
-                    width: 90,
+                    width: 100,
                     editable: false},
                     {name:'Answer',
                     width: 500,
@@ -110,7 +110,7 @@ $(function () {
                     width: 100} ]
 
   const leaderColumns = [{name:'Team',
-                    width: 350,
+                    width: 400,
                     editable: false},
                     {name:'Total Score',
                     width: 120,
@@ -321,6 +321,7 @@ function calcCertButton(position){
 
           // This is to save the scoring already done.
           const teamCheck = searchData(data[i].TeamName, answers)
+          //console.log(teamCheck + ' '+ i)
           if (teamCheck >= 0) {
             qScores = {}
             totalScore = 0
@@ -348,12 +349,12 @@ function calcCertButton(position){
 
           for (let p = 0; p < sections; p++) {
             const obj = Object.entries(data[i].TrivSections[p + 1])
-
+            //console.log(p)
+            //console.log(obj)
             for (let q = 0; q < obj.length; q++) {
                if (teamCheck >= 0) {
                   let s = qScores[obj[q][0]]
-
-                  s = s ? s: ""
+                  s = s || s === 0 ? s: ""
                   obj[q].push(s)
                }
               //obj[q].push(5);
@@ -429,10 +430,13 @@ function calcCertButton(position){
         if(lastSelected) {
             const position = searchData(lastSelected, answers)
             datatable.refresh(answers[position].answers,scoreColumns)
+            //console.log(answers[position].answers)
 
             for (let i = 0; i < answers[position].answers.length; i++){
               if(answers[position].answers[i][2]){
                 datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#b0f7c3'})
+              } else if (answers[position].answers[i][2] === 0 ) {
+                datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#f7a592'})
               } else {
                 datatable.style.setStyle(`.dt-cell--row-`+i, {backgroundColor: '#ffffff'})
 
@@ -538,7 +542,7 @@ function calcCertButton(position){
 
       if (json.Type === 'clients') {
         console.log('clients here')
-        console.log(json.Data);
+        //console.log(json.Data);
       }
 
   }
@@ -589,7 +593,7 @@ $('body').on('change', '.dt-input', function(){
   let newValue = parseFloat($(this).val());
   console.log(newValue)
   let team = searchData(lastSelected, answers)
-  console.log(team)
+  //console.log(team)
   if (isNaN(newValue)){
     //When user deletes a score remove it from answers array
     answers[team].answers[rowIndex].splice(2,1)
@@ -603,6 +607,7 @@ $('body').on('change', '.dt-input', function(){
   }
   //Refresh table to recalculate total
   datatable.refresh(answers[team].answers, scoreColumns);
+  //console.log(answers[team].answers)
 
   for (let i = 0; i < answers[team].answers.length; i++){
     if(answers[team].answers[i][2]){
@@ -635,6 +640,20 @@ $('body').on('change', '.dt-input', function(){
   connection.send(JSON.stringify(
     { type: 'Graded', data: answers }));
 
+    
+    //let nextrow = parseInt(rowIndex) + 2
+    //let stuff = 'div[data-row-index="'+nextrow+'"][data-col-index="'+ colIndex +'"]'
+
+    // $("div[data-row-index='3'] div[data-col-index='3']").val(function() {
+    //
+    //   $(this).children("div[class='dt-cell__edit']").focus()
+    // console.log($(this).children("div[class='dt-cell__edit']"));
+    // });
+
+
+  //let stuff = $('div[data-row-index="3"] div[data-col-index="3"]').children().val();
+  //$('#select2-mySelect2-container').focus();
+//console.log(stuff)
   // Change Background of row to green after score has been entered
   //datatable.style.setStyle(`.dt-cell--row-`+rowIndex, {backgroundColor: '#b0f7c3'})
 });
